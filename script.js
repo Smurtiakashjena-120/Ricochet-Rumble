@@ -164,7 +164,7 @@ function resetGame(){
 //on window load logic
 
 window.onload=()=>{
-  turnHeading.innerText=`${turn}'s Turn`;
+  turnHeading.innerText=`${turn.toUpperCase()}'s Turn`;
   pauseBtn.innerText="Pause";
   // console.log(turn);
   let display=document.querySelector("#timer");
@@ -186,7 +186,7 @@ window.onload=()=>{
 
 function updateTurn(group){
   // console.log(turn);
-turnHeading.innerText=`${group}'s Turn`;
+turnHeading.innerText=`${group.toUpperCase()}'s Turn`;
 
 //time update
 let totalTime=60; // 60 seconds
