@@ -8,13 +8,16 @@
 </head>
 <body>
     <div class="window">
-        <div class="hacker">
-            <a href="hackerMode.html">Hacker Mode</a>
+        <div class="normal">
+            <a href="index.html">Normal Mode</a>
         </div>
         <div class="heading">
-            <h1>Ricochet Rumble</h1>
-            <br>
-            <i>!! play only in your move !!!</i>
+            <h1>Hacker Mode</h1>
+            <div class="undoRedo">
+                <button id="undo">Undo</button>
+                <button id="redo">Redo</button>
+                <button id="historyBtn">History</button>
+            </div>
             <br>
         </div>
         
@@ -30,13 +33,18 @@
         </div>
         <div class="gameBoard">
         </div>
-        
+    
     
         </div>
+
+        <div class="historyContainer">
+            
+        </div>
+        
     </div>
   
 
 
-    <script src="script.js"></script>
+    <script src="hackerMode.js"></script>
 </body>
 </html>
