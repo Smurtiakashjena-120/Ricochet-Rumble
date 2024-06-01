@@ -404,10 +404,7 @@ function disableDrag(){
 function moveBulletDown(){
   let bullet=document.querySelector('.bullet');
   if (!bullet) return;
-  // if (!bullet) {
-  //   bullet = document.createElement("div");
-  //   bullet.classList.add('bullet');
-  // }
+ 
   if(!moveBulletRightCalled && !moveBulletLeftCalled){
     bulletPostion++;
   }
