@@ -806,13 +806,13 @@ function moveBulletRight() {
                  //checking orientation of triangle and send accordingly
                  if(square.firstChild.getAttribute("direction") == "right"){
                   goDownCalled=true;
-                   moveBulletRightCalled=false;
+                  moveBulletLeftCalled=false;
                    goDown();
                    return;
                      
                  }else{
                   updateTurn(turn);
-                  moveBulletRightCalled = false;
+                  moveBulletLeftCalled = false;
                   bullet.remove();
                   enableDrag()
                   return;
@@ -825,12 +825,12 @@ function moveBulletRight() {
                 if(square.firstChild.getAttribute("direction") == "right"){
                  
                     goUpCalled=true;
-                    moveBulletRightCalled=false;
+                    moveBulletLeftCalled=false;
                     goUp();
                     return
                 }else{
                    updateTurn(turn);
-                   moveBulletRightCalled = false;
+                   moveBulletLeftCalled = false;
                    bullet.remove();
                   enableDrag()
                   return;
@@ -844,12 +844,12 @@ function moveBulletRight() {
                  //checking orientation of line and send accordingly
                  if(square.firstChild.getAttribute("direction") == "right"){
                   goDownCalled=true;
-                  moveBulletRightCalled=false;
+                  moveBulletLeftCalled=false;
                   goDown();
                   return;
                  }else{                   
                    goUpCalled=true;
-                  moveBulletRightCalled=false;
+                   moveBulletLeftCalled=false;
                      goUp();
                     return;
                  }
@@ -860,12 +860,12 @@ function moveBulletRight() {
                 //checking orientation of line and send accordingly
                 if(square.firstChild.getAttribute("direction") == "right"){
                   goUpCalled=true;
-                  moveBulletRightCalled=false;
+                  moveBulletLeftCalled=false;
                   goUp();
                   return;
             }else{
                 goDownCalled=true;
-                 moveBulletRightCalled=false;
+                moveBulletLeftCalled=false;
                  goDown();
                  return;
             }
