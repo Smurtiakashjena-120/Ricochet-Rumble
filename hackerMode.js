@@ -964,6 +964,7 @@ function rotateItem(square){
 
     highLightFlag=false;
     highLight(draggedElement.parentNode)
+    let rotatedItem=draggedElement;
     
     if (square.firstChild.classList.contains('flipped')) {
       // Class 'flipped' is present in the class list
@@ -989,19 +990,19 @@ function rotateItem(square){
       if (square.firstChild.getAttribute("direction") == "right") {
         square.firstChild.setAttribute("direction","left")
        
-        let sentence=`${grp} triangle at [ ${r} , ${c} ] rotated to left`
-        saveHistory(sentence);
+        let sentence=`${grp} ${rotatedItem.getAttribute("char")} at [ ${r} , ${c} ] rotated to right`;
+          saveHistory(sentence);
 
        
       } else {
         square.firstChild.setAttribute("direction","right")
 
-        let sentence=`${grp} triangle at [ ${r} , ${c} ] rotated to right`
+        let sentence=`${grp} ${rotatedItem.getAttribute("char")} at [ ${r} , ${c} ] rotated to right`
         saveHistory(sentence);
       }
 
 
- 
+
     
    
   })
