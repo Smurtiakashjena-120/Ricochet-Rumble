@@ -331,6 +331,9 @@ async function dragDrop(square){
     square.addEventListener("click", () => {
       startRotate(square);
     });
+    square.addEventListener("click", () => {
+      startSwap(square);
+    });
     highLightFlag=false;
     moveFlag=false;
     highLight(draggedElement.parentNode);
@@ -346,6 +349,9 @@ async function dragDrop(square){
      // Add event listener to the new square
      square.addEventListener("click", () => {
       startRotate(square);
+    });
+    square.addEventListener("click", () => {
+      startSwap(square);
     });
 
     highLightFlag=false;
