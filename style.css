@@ -7,9 +7,8 @@ p{
   font-size:.75em;;
 }
 .window{
-  background-color: #850F8D;
-  min-height: 100vh;
-  color: #F8F9D7;
+  background-image: linear-gradient(to top, #b3ffab 0%, #12fff7 100%);  min-height: 100vh;
+  color: #111110;
   font-family:'Courier New', Courier, monospace;
 }
 
@@ -20,20 +19,22 @@ p{
   flex-direction: column;
 }
 .gameBoard{
-  margin-top: 1vh;
+  margin-top: 2vh;
   height: 45vh;
   width: 45vh;
-  border: 2px solid black;
   border-radius: 5px;
   display: grid;
 grid-template-columns: repeat(8,1fr);
-box-shadow: 0px 10px 20px rgb(46, 24, 24);
+box-shadow: 0 20px 50px rgba(249, 2, 203, 0.7);
 }
 .square{
-  /* margin: 1px; */
-  background:#E49BFF;
-border-left: 1px solid rgb(50, 49, 49);
-border-bottom: 1px solid rgb(50, 49, 49);
+  background-color: grey;
+  box-shadow: 0 0 50px 15px #48abe0;
+  margin: 1px;
+    border-radius: 0.7vh;
+border: 1px solid rgb(101, 97, 97);
+box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+
 display: flex;
 align-items: center;
 justify-content: center;
@@ -42,6 +43,11 @@ position: relative;
 .square .piece{
 /* position: relative; */
 z-index: 9;
+}
+
+.heading{
+  color:rgb(119, 92, 57);
+  font-family: cursive;
 }
 
 .disabled {
@@ -71,12 +77,21 @@ align-items: center;
 flex-direction: column;
 }
 
+.turnHeading{
+  font-size: 3vh;
+  font-weight: 700;
+}
 button{
-  color: blueviolet;
-  background-color: antiquewhite;
-  border-radius: 5px;
+  border: 1px solid black;
+  color: rgb(22, 5, 38);
+  background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);  border-radius: 5px;
   padding: 5px;
 }
+button:hover{
+  border: none;
+  background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+    cursor: pointer;
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;}
 .historyContainer{
   margin-top: 1em;
   display: flex;
@@ -89,4 +104,8 @@ a{
   text-decoration: none;
   cursor: pointer;
   
+}
+
+.highlight{
+  background: greenyellow;
 }
