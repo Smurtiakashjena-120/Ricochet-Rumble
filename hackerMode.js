@@ -461,7 +461,7 @@ let goDownCalled=false;
 
  function createBullet(dragGrp){
 
-
+ clearSwapBtns();
   clearBtns()
   //sending data to save history
   //if sentence ensuring that if item has rotated or swaped then it should not start
@@ -806,13 +806,13 @@ function moveBulletRight() {
                  //checking orientation of triangle and send accordingly
                  if(square.firstChild.getAttribute("direction") == "right"){
                   goDownCalled=true;
-                  moveBulletLeftCalled=false;
+                   moveBulletRightCalled=false;
                    goDown();
                    return;
                      
                  }else{
                   updateTurn(turn);
-                  moveBulletLeftCalled = false;
+                  moveBulletRightCalled = false;
                   bullet.remove();
                   enableDrag()
                   return;
@@ -825,12 +825,12 @@ function moveBulletRight() {
                 if(square.firstChild.getAttribute("direction") == "right"){
                  
                     goUpCalled=true;
-                    moveBulletLeftCalled=false;
+                    moveBulletRightCalled=false;
                     goUp();
                     return
                 }else{
                    updateTurn(turn);
-                   moveBulletLeftCalled = false;
+                   moveBulletRightCalled = false;
                    bullet.remove();
                   enableDrag()
                   return;
@@ -844,12 +844,12 @@ function moveBulletRight() {
                  //checking orientation of line and send accordingly
                  if(square.firstChild.getAttribute("direction") == "right"){
                   goDownCalled=true;
-                  moveBulletLeftCalled=false;
+                  moveBulletRightCalled=false;
                   goDown();
                   return;
                  }else{                   
                    goUpCalled=true;
-                   moveBulletLeftCalled=false;
+                  moveBulletRightCalled=false;
                      goUp();
                     return;
                  }
@@ -860,12 +860,12 @@ function moveBulletRight() {
                 //checking orientation of line and send accordingly
                 if(square.firstChild.getAttribute("direction") == "right"){
                   goUpCalled=true;
-                  moveBulletLeftCalled=false;
+                  moveBulletRightCalled=false;
                   goUp();
                   return;
             }else{
                 goDownCalled=true;
-                moveBulletLeftCalled=false;
+                 moveBulletRightCalled=false;
                  goDown();
                  return;
             }
@@ -952,6 +952,8 @@ function rotateItem(square){
  let r= square.dataset.row;
  let c=square.dataset.col;
  let grp=square.firstChild.getAttribute("group");
+
+ clearBtns();
 
   let btn=document.createElement("button");
   btn.innerText="Rotate"
@@ -1225,13 +1227,11 @@ const buttons = container.querySelectorAll('button');
 
 // Iterate over the buttons to find and remove buttons with specific inner text
 buttons.forEach(button => {
-    if (button.innerText === 'Swap' || button.innerText === 'Rotate') {
+    if (button.innerText === 'Rotate') {//button.innerText === 'Swap' ||
         button.remove();
     }
 });
-
 enableClick();
-
 }
 //function to remove swap btns
 function clearSwapBtns(){

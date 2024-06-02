@@ -801,6 +801,10 @@ function startRotate(square){
 
 
 function rotateItem(square){
+
+//ensures that multiple button will not be added
+clearButton();
+
   let btn=document.createElement("button");
   btn.innerText="Rotate"
   container.appendChild(btn)
