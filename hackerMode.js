@@ -967,12 +967,19 @@ function rotateItem(square){
       square.firstChild.classList.remove('flipped');
       clearBtns();
       enableClick();
+         //so that it will not store the history again in create bullet
+         draggedElement=null;
+
       createBullet(square.firstChild.getAttribute("group"));
   } else {
       // Class 'flipped' is not present in the class list
       square.firstChild.classList.add('flipped');
       clearBtns();
       enableClick();
+
+          //so that it will not store the history again in create bullet
+     draggedElement=null;
+
       createBullet(square.firstChild.getAttribute("group"));
   }
 
@@ -989,8 +996,8 @@ function rotateItem(square){
         let sentence=`${grp} triangle at [ ${r} , ${c} ] rotated to right`
         saveHistory(sentence);
       }
-    
-    
+
+
      highLightFlag=false;
      highLight(draggedElement.parentNode)
     
