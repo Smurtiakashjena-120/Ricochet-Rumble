@@ -961,6 +961,9 @@ function rotateItem(square){
   btn.addEventListener("click",()=>{
 
     turn = turn==="red" ? "blue":"red";
+
+    highLightFlag=false;
+    highLight(draggedElement.parentNode)
     
     if (square.firstChild.classList.contains('flipped')) {
       // Class 'flipped' is present in the class list
@@ -998,8 +1001,7 @@ function rotateItem(square){
       }
 
 
-     highLightFlag=false;
-     highLight(draggedElement.parentNode)
+ 
     
    
   })
