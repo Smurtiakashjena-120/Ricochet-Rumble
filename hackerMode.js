@@ -211,8 +211,14 @@ startTimer(totalTime, display);
 let highLightFlag=false;
 
 function highLight(square){
+
 let hRow=parseInt(square.dataset.row);
 let hCol=parseInt(square.dataset.col);
+
+//ensures that every box become neutral before new highlight start
+allSquares.forEach(div =>{
+  div.style.backgroundColor="grey";
+})
 
   if(highLightFlag){
      if(square.firstChild.getAttribute("char") != "canon"){
@@ -229,7 +235,8 @@ let hCol=parseInt(square.dataset.col);
          }
         }
        })
-     }else{
+     }
+     else{
       allSquares.forEach(div => {
         if(!div.firstChild){
           let r=parseInt(div.dataset.row);
@@ -290,6 +297,8 @@ let undoEndObject={
 //Dragging logic!!!
 
 function dragStart(square){
+  clearBtns();
+  clearSwapBtns();
   draggedElement=square.firstChild;
   
   if(draggedElement){
@@ -338,6 +347,7 @@ async function dragDrop(square){
     moveFlag=false;
     highLight(draggedElement.parentNode);
     clearBtns();
+    
     
     }
   }
@@ -468,7 +478,7 @@ let goDownCalled=false;
  function createBullet(dragGrp){
 
  clearSwapBtns();
-  clearBtns()
+clearBtns()
   //sending data to save history
   //if sentence ensuring that if item has rotated or swaped then it should not start
   if(draggedElement){
@@ -1318,6 +1328,9 @@ allSquares.forEach(square => {
 
       swapTriangle(); 
 
+    }
+    else{
+      swapFlag=false;
     }
   });
 });

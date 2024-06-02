@@ -227,6 +227,11 @@ function highLight(square){
 let hRow=parseInt(square.dataset.row);
 let hCol=parseInt(square.dataset.col);
 
+//ensures that every box become neutral before new highlight start
+allSquares.forEach(div =>{
+  div.style.backgroundColor="grey";
+})
+
   if(highLightFlag){
      if(square.firstChild.getAttribute("char") != "canon"){
 
@@ -287,6 +292,7 @@ allSquares.forEach(square => {
 
 
 function dragStart(square){
+  clearButton();
   draggedElement=square.firstChild;
 
   if(draggedElement){
