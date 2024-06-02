@@ -1416,12 +1416,12 @@ historyBtn.addEventListener("click",()=>{
 
     historyBtn.innerText='Close History'
 
-  historyContainer.innerText="History";
+  historyContainer.innerHTML="<h3>History</h3>";
 
   historyArr.forEach(item=>{
 
    let line=document.createElement("p");
-   line.innerText=item;
+   line.innerText="=> "+item;
 
    historyContainer.appendChild(line);
 

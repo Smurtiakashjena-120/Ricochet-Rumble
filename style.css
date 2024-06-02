@@ -1,6 +1,10 @@
 *{
   margin: 0;
   padding: 0;
+  
+}
+p{
+  font-size:.75em;;
 }
 .window{
   background-color: #850F8D;
@@ -74,6 +78,7 @@ button{
   padding: 5px;
 }
 .historyContainer{
+  margin-top: 1em;
   display: flex;
   align-items: center;
   justify-content: center;
