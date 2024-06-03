@@ -71,6 +71,7 @@ height: 100%;
 width: 100%;
 }
 .heading{
+  margin-top: 1.5vh;
 display: flex;
 justify-content: center;
 align-items: center;
@@ -102,7 +103,7 @@ button:hover{
 a{
   margin: 1vh;
   padding: 1vh;
-  border: 1px solid blue;
+  
   color: black;
   text-decoration: none;
   cursor: pointer;
