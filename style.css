@@ -100,6 +100,9 @@ button:hover{
   flex-direction: column;
 }
 a{
+  margin: 1vh;
+  padding: 1vh;
+  border: 1px solid blue;
   color: black;
   text-decoration: none;
   cursor: pointer;
