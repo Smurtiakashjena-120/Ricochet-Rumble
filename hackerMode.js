@@ -138,6 +138,12 @@ if(pauseBtn.innerText=="Pause"){
        clearInterval(intervalID);
    }
     display.innerText = `Time Left: ${timer}s`;
+    allSquares.forEach(square=>{
+      if(square.firstChild && square.firstChild.getAttribute("class") != "bullet"){
+          square.classList.add("disabled")
+          square.firstChild.classList.add("disabled")
+      }  
+    })
 
    }
 else if(pauseBtn.innerText == "Play")
@@ -148,7 +154,12 @@ else if(pauseBtn.innerText == "Play")
      let newTime=pausedValue;
    // Start a new timer
      startTimer(newTime, display);
-    // pauseBtn.innerText= pauseBtn.innerText=="Pause" ? "Play" : "Pause";
+     allSquares.forEach(square=>{
+      if(square.firstChild && square.firstChild.getAttribute("class") != "bullet"){
+          square.classList.remove("disabled")
+          square.firstChild.classList.remove("disabled")
+      }  
+    })
     }
 })
 
