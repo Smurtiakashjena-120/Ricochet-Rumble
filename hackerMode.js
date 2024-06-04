@@ -302,7 +302,8 @@ let undoEndObject={
   row:null,
   col:null,
 }
-
+//declaring vaiable for knowing what type of undo happening
+let undoType;
 
 
 //Dragging logic!!!
@@ -332,6 +333,8 @@ async function dragDrop(square){
   endRow=square.dataset.row;
   endCol=square.dataset.col;
 
+
+   undoType="move";
   //updating undoStart object
   undoStartObject.row=startRow;
   undoStartObject.col=startCol;
@@ -409,59 +412,111 @@ function UndoMove(){
 
   let moveObj;
   undoFlag=true;
-  allSquares.forEach(square=>{
-            let r = square.dataset.row;
-            let c = square.dataset.col;
-        if((r == undoEndObject.row) && (c == undoEndObject.col)){
-          moveObj=square.firstChild;
-          square.firstChild.remove();
-        }    
-  
-  })
-  allSquares.forEach(square=>{
-            let r = square.dataset.row;
-            let c = square.dataset.col;
-        if((r == undoStartObject.row) && (c == undoStartObject.col)){
-          square.appendChild(moveObj);
-          turn = turn === "red" ? "blue" : "red";
-          updateTurn(turn);
-        }    
-  
-  })
 
-//ensures that if undo happen then the added history should also removed
-  redoSentence=historyArr.pop();
-
+  if(undoType == "move"){ 
+    allSquares.forEach(square=>{
+              let r = square.dataset.row;
+              let c = square.dataset.col;
+          if((r == undoEndObject.row) && (c == undoEndObject.col)){
+            moveObj=square.firstChild;
+            square.firstChild.remove();
+          }    
+    
+    })
+    allSquares.forEach(square=>{
+              let r = square.dataset.row;
+              let c = square.dataset.col;
+          if((r == undoStartObject.row) && (c == undoStartObject.col)){
+            square.appendChild(moveObj);
+            turn = turn === "red" ? "blue" : "red";
+            updateTurn(turn);
+          }    
+    
+    })
+  
+  //ensures that if undo happen then the added history should also removed
+    redoSentence=historyArr.pop();
+  
+    }
+    else if(undoType == "rotate"){
+  
+      allSquares.forEach(square => {
+       let r=square.dataset.row;
+       let c=square.dataset.col;
+      
+       if((r == undoStartObject.row) && (c == undoStartObject.col)){
+  
+        if (square.firstChild.classList.contains('flipped')) {
+  
+          square.firstChild.classList.remove("flipped")
+        }else{
+          square.firstChild.classList.add('flipped');
+        }
+  
+       }
+  
+      })
+      //ensures that if undo happen then the added history should also removed
+       redoSentence=historyArr.pop();
+    }
 
 }
 function RedoMove(){
 if(undoFlag){
   undoFlag=false;
 
-allSquares.forEach(square=>{
-    let r = square.dataset.row;
-    let c = square.dataset.col;
-if((r == undoStartObject.row) && (c == undoStartObject.col)){
-  moveObj=square.firstChild;
-  square.firstChild.remove();
-}    
-
-})
-allSquares.forEach(square=>{
-    let r = square.dataset.row;
-    let c = square.dataset.col;
-if((r == undoEndObject.row) && (c == undoEndObject.col)){
-  square.appendChild(moveObj);
-  turn = turn === "red" ? "blue" : "red";
-  updateTurn(turn);
-}    
-
-})
-
-historyArr.push(redoSentence);
-redoSentence="";
-
-redoFlag=true;
+  if(undoType == "move"){ 
+    allSquares.forEach(square=>{
+      let r = square.dataset.row;
+      let c = square.dataset.col;
+  if((r == undoStartObject.row) && (c == undoStartObject.col)){
+    moveObj=square.firstChild;
+    square.firstChild.remove();
+  }    
+  
+  })
+  allSquares.forEach(square=>{
+      let r = square.dataset.row;
+      let c = square.dataset.col;
+  if((r == undoEndObject.row) && (c == undoEndObject.col)){
+    square.appendChild(moveObj);
+    turn = turn === "red" ? "blue" : "red";
+    updateTurn(turn);
+  }    
+  
+  })
+  
+  historyArr.push(redoSentence);
+  redoSentence="";
+  redoFlag=true;
+    }
+  
+  else if(undoType == "rotate"){
+  
+    allSquares.forEach(square => {
+     let r=square.dataset.row;
+     let c=square.dataset.col;
+    
+     if((r == undoStartObject.row) && (c == undoStartObject.col)){
+  
+      if (square.firstChild.classList.contains('flipped')) {
+  
+        square.firstChild.classList.remove("flipped")
+      }else{
+        square.firstChild.classList.add('flipped');
+      }
+      turn = turn === "red" ? "blue" : "red";
+      updateTurn(turn);
+  
+  
+     }
+  
+    })
+    historyArr.push(redoSentence);
+  redoSentence="";
+  redoFlag=true;
+  
+  }
 
 }
 
@@ -986,6 +1041,11 @@ function rotateItem(square){
   btn.innerText="Rotate"
   container.appendChild(btn)
   btn.addEventListener("click",()=>{
+
+    //updating for swaping purpose
+    undoType="rotate";
+    undoStartObject.row=square.dataset.row;
+    undoStartObject.col=square.dataset.col;
 
     turn = turn==="red" ? "blue":"red";
 
