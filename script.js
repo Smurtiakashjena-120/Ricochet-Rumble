@@ -128,6 +128,15 @@ if(pauseBtn.innerText=="Pause"){
    }
     display.innerText = `Time Left: ${timer}s`;
 
+    allSquares.forEach(square=>{
+      if(square.firstChild && square.firstChild.getAttribute("class") != "bullet"){
+          square.classList.add("disabled")
+          square.firstChild.classList.add("disabled")
+      }  
+    })
+
+
+
    }
 else if(pauseBtn.innerText == "Play")
      {
@@ -137,6 +146,20 @@ else if(pauseBtn.innerText == "Play")
      let newTime=pausedValue;
   
      startTimer(newTime, display);
+
+
+     //disable logic
+     allSquares.forEach(square=>{
+      if(square.firstChild && square.firstChild.getAttribute("class") != "bullet"){
+        if(square.firstChild.getAttribute("group") != turn){
+          square.classList.add("disabled")
+          square.firstChild.classList.add("disabled")
+        }else{
+          square.classList.remove("disabled")
+          square.firstChild.classList.remove("disabled")
+        }
+      }  
+    })
    
     }
 })
