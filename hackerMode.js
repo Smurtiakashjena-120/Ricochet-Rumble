@@ -394,7 +394,7 @@ const redoBtn=document.querySelector("#redo");
 
 //declaring variable do that redo can only be done if undo has done just before
 let undoFlag=false;
-let redoFlag=false;
+let redoFlag=true;
 
 undoBtn.addEventListener("click",()=>{
   UndoMove();
@@ -402,17 +402,17 @@ undoBtn.addEventListener("click",()=>{
 redoBtn.addEventListener("click",()=>{
   RedoMove();
 })
-
 //declaring a variable such that if redo called then it will add that step to historyArray
 let redoSentence;
 
 function UndoMove(){
   //ensuring that atleast one move has been played
   if(!undoStartObject.row) return;
+  if(!redoFlag) return;
 
   let moveObj;
   undoFlag=true;
-
+console.log("redoFlag: ",redoFlag);
   if(undoType == "move"){ 
     allSquares.forEach(square=>{
               let r = square.dataset.row;
@@ -433,9 +433,9 @@ function UndoMove(){
           }    
     
     })
-  
+  redoFlag=false;
   //ensures that if undo happen then the added history should also removed
-    redoSentence=historyArr.pop();
+    redoSentence=historyArr.pop();  
   
     }
     else if(undoType == "rotate"){
@@ -456,6 +456,7 @@ function UndoMove(){
        }
   
       })
+      redoFlag=false;
       //ensures that if undo happen then the added history should also removed
        redoSentence=historyArr.pop();
     }
