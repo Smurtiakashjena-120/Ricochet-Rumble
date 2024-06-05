@@ -543,8 +543,8 @@ let goUpCalled=false;
 let goDownCalled=false;
 
  function createBullet(dragGrp){
-
- clearSwapBtns();
+redoFlag=true;
+clearSwapBtns();
 clearBtns()
   //sending data to save history
   //if sentence ensuring that if item has rotated or swaped then it should not start

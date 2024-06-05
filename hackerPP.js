@@ -396,7 +396,7 @@ const redoBtn=document.querySelector("#redo");
 
 //declaring variable do that redo can only be done if undo has done just before
 let undoFlag=false;
-let redoFlag=false;
+let redoFlag=true;
 
 undoBtn.addEventListener("click",()=>{
   UndoMove();
@@ -410,6 +410,7 @@ redoBtn.addEventListener("click",()=>{
 function UndoMove(){
   //ensuring that atleast one move has been played
   if(!undoStartObject.row) return;
+  if(!redoFlag) return;
 
   let moveObj;
   undoFlag=true;
@@ -434,9 +435,8 @@ function UndoMove(){
         }    
   
   })
-
-
-
+//redoflag update
+redoFlag=false;
   }
   else if(undoType == "rotate"){
 
@@ -456,7 +456,8 @@ function UndoMove(){
      }
 
     })
-
+//redoflag update
+redoFlag=false;
   }
 }
 
@@ -537,8 +538,8 @@ let goUpCalled=false;
 let goDownCalled=false;
 
  function createBullet(dragGrp){
-
- clearSwapBtns();
+redoFlag=true;
+clearSwapBtns();
 clearBtns()
   //sending data to save history
   //if sentence ensuring that if item has rotated or swaped then it should not start
