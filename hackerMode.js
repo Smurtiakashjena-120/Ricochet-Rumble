@@ -412,7 +412,7 @@ function UndoMove(){
 
   let moveObj;
   undoFlag=true;
-console.log("redoFlag: ",redoFlag);
+// console.log("redoFlag: ",redoFlag);
   if(undoType == "move"){ 
     allSquares.forEach(square=>{
               let r = square.dataset.row;
@@ -456,9 +456,40 @@ console.log("redoFlag: ",redoFlag);
        }
   
       })
+
+
+      turn = turn === "red" ? "blue" : "red";
+      updateTurn(turn);
       redoFlag=false;
       //ensures that if undo happen then the added history should also removed
        redoSentence=historyArr.pop();
+    }
+    else if(undoType == "swap"){
+      allSquares.forEach(square => {
+        let r=square.dataset.row;
+        let c=square.dataset.col;
+      if((r == undoStartObject.row) && (c == undoStartObject.col)){
+      
+       square.innerHTML="";
+       square.appendChild(lineElement);
+      }
+   
+       })
+      allSquares.forEach(square => {
+        let r=square.dataset.row;
+        let c=square.dataset.col;
+      if((r == undoEndObject.row) && (c == undoEndObject.col)){
+      
+       square.innerHTML="";
+       square.appendChild(swapFinalElement);
+      }
+   
+       })
+       turn = turn === "red" ? "blue" : "red";
+       updateTurn(turn);
+       redoFlag=false;
+       //ensures that if undo happen then the added history should also removed
+        redoSentence=historyArr.pop();
     }
 
 }
@@ -517,6 +548,33 @@ if(undoFlag){
   redoSentence="";
   redoFlag=true;
   
+  }
+  else if(undoType == "swap"){
+    allSquares.forEach(square => {
+      let r=square.dataset.row;
+      let c=square.dataset.col;
+    if((r == undoStartObject.row) && (c == undoStartObject.col)){
+    
+     square.innerHTML="";
+     square.appendChild(swapFinalElement);
+    }
+ 
+     })
+    allSquares.forEach(square => {
+      let r=square.dataset.row;
+      let c=square.dataset.col;
+    if((r == undoEndObject.row) && (c == undoEndObject.col)){
+    
+     square.innerHTML="";
+     square.appendChild(lineElement);
+    }
+ 
+     })
+     turn = turn === "red" ? "blue" : "red";
+     updateTurn(turn);
+     historyArr.push(redoSentence);
+     redoSentence="";
+     redoFlag=true;
   }
 
 }
@@ -1383,6 +1441,11 @@ function startSwap(square){
     lineElement=square.firstChild;
     swapStartObject.row=square.dataset.row;
     swapStartObject.col=square.dataset.col;
+
+
+
+
+
   });
 
 }
@@ -1410,6 +1473,17 @@ allSquares.forEach(square => {
 
 //  handle swapping logic
 function swapTriangle(e) {
+
+   //undologic
+   undoType="swap";
+   undoStartObject.row=swapStartObject.row;
+   undoStartObject.col=swapStartObject.col;
+   undoEndObject.row=swapEndObject.row;
+   undoEndObject.col=swapEndObject.col;//swapfinalelement,lineElement
+
+
+
+
   //ensure that there shouod not ne extra buttons
 clearBtns();
   //updating triangle's place

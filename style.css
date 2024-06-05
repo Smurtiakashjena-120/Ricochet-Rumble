@@ -83,6 +83,7 @@ flex-direction: column;
   font-weight: 700;
 }
 button{
+  margin: 2px;
   border: 1px solid black;
   color: rgb(22, 5, 38);
   background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);  border-radius: 5px;

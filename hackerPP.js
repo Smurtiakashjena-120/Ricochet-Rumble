@@ -459,6 +459,33 @@ redoFlag=false;
 //redoflag update
 redoFlag=false;
   }
+  else if(undoType == "swap"){
+    allSquares.forEach(square => {
+      let r=square.dataset.row;
+      let c=square.dataset.col;
+    if((r == undoStartObject.row) && (c == undoStartObject.col)){
+    
+     square.innerHTML="";
+     square.appendChild(lineElement);
+    }
+ 
+     })
+    allSquares.forEach(square => {
+      let r=square.dataset.row;
+      let c=square.dataset.col;
+    if((r == undoEndObject.row) && (c == undoEndObject.col)){
+    
+     square.innerHTML="";
+     square.appendChild(swapFinalElement);
+    }
+ 
+     })
+     turn = turn === "red" ? "blue" : "red";
+     updateTurn(turn);
+     redoFlag=false;
+     //ensures that if undo happen then the added history should also removed
+      redoSentence=historyArr.pop();
+  }
 }
 
 function RedoMove(){
@@ -515,6 +542,34 @@ else if(undoType == "rotate"){
 redoFlag=true;
 
 }
+else if(undoType == "swap"){
+  allSquares.forEach(square => {
+    let r=square.dataset.row;
+    let c=square.dataset.col;
+  if((r == undoStartObject.row) && (c == undoStartObject.col)){
+  
+   square.innerHTML="";
+   square.appendChild(swapFinalElement);
+  }
+
+   })
+  allSquares.forEach(square => {
+    let r=square.dataset.row;
+    let c=square.dataset.col;
+  if((r == undoEndObject.row) && (c == undoEndObject.col)){
+  
+   square.innerHTML="";
+   square.appendChild(lineElement);
+  }
+
+   })
+   turn = turn === "red" ? "blue" : "red";
+   updateTurn(turn);
+   historyArr.push(redoSentence);
+   redoSentence="";
+   redoFlag=true;
+}
+
 }
 }
 
@@ -1435,6 +1490,17 @@ allSquares.forEach(square => {
 
 //  handle swapping logic
 function swapTriangle(e) {
+
+   //undologic
+   undoType="swap";
+   undoStartObject.row=swapStartObject.row;
+   undoStartObject.col=swapStartObject.col;
+   undoEndObject.row=swapEndObject.row;
+   undoEndObject.col=swapEndObject.col;//swapfinalelement,lineElement
+
+
+
+
   //ensure that there shouod not ne extra buttons
 clearBtns();
   //updating triangle's place
