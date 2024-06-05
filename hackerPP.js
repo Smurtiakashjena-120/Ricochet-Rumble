@@ -1603,6 +1603,7 @@ localStorage.setItem('replaysave', saveInLocal);
 
 //replay logic
 const replayBtn=document.querySelector("#replayBtn")
+let historyContainer=document.querySelector(".historyContainer")
 //array to handle all rplay logic
 let lastGameArr=[];
 replayBtn.addEventListener("click",()=>{
