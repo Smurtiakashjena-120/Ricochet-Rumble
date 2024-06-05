@@ -447,9 +447,11 @@ function moveBulletDown(){
                     if((square.firstChild.getAttribute("char") == "triangle" && square.firstChild.getAttribute("group") != "blue") || (square.firstChild.getAttribute("char") == "line" && square.firstChild.getAttribute("group") != "blue")){
                      
                       if(square.firstChild.getAttribute("direction") == "right"){
+                        square.appendChild(bullet);
                         moveBulletRightCalled=true;
                         moveBulletRight();
                       }else{
+                        square.appendChild(bullet);
                         moveBulletLeftCalled=true;
                         moveBulletLeft();
                       }
@@ -458,10 +460,12 @@ function moveBulletDown(){
                     }
                     else if((square.firstChild.getAttribute("char") == "line" && square.firstChild.getAttribute("group") == "blue")){
                       if(square.firstChild.getAttribute("direction") == "right"){
+                        square.appendChild(bullet);
                         moveBulletLeftCalled=true;
                         moveBulletLeft();
 
                       }else{
+                        square.appendChild(bullet);
                         moveBulletRightCalled=true;
                         moveBulletRight();
                       }
@@ -469,10 +473,12 @@ function moveBulletDown(){
                     }
                     else if(square.firstChild.getAttribute("char") == "titan"){
                       let color=square.firstChild.getAttribute("group");
+                      square.appendChild(bullet);
                         alert(`${color} lost the game`);
                         location.reload();
                     }
                     else{
+                      square.appendChild(bullet);
                       updateTurn(turn);
                       enableDrag()
                       bullet.remove();
@@ -509,9 +515,11 @@ function moveBulletUp(){
           if (square.firstChild) {
             if((square.firstChild.getAttribute("char") == "triangle" && square.firstChild.getAttribute("group") != "red") || (square.firstChild.getAttribute("char") == "line" && square.firstChild.getAttribute("group") != "red")){
               if(square.firstChild.getAttribute("direction") == "right"){
+                square.appendChild(bullet);
                 moveBulletRightCalled=true;
                 moveBulletRight();
               }else{
+                square.appendChild(bullet);
                 moveBulletLeftCalled=true;
                 moveBulletLeft();
               }
@@ -520,10 +528,12 @@ function moveBulletUp(){
             }
             else if((square.firstChild.getAttribute("char") == "line" && square.firstChild.getAttribute("group") == "red")){
               if(square.firstChild.getAttribute("direction") == "right"){
+                square.appendChild(bullet);
                 moveBulletLeftCalled=true;
                 moveBulletLeft();
 
               }else{
+                square.appendChild(bullet);
                 moveBulletRightCalled=true;
                 moveBulletRight();
               }
@@ -531,11 +541,12 @@ function moveBulletUp(){
             }
             else if(square.firstChild.getAttribute("char") == "titan"){
               let color=square.firstChild.getAttribute("group");
+              square.appendChild(bullet);
                         alert(`${color} lost the game`);
                         location.reload();
           }
             else{
-             
+              square.appendChild(bullet);
               updateTurn(turn);
               enableDrag()
               bullet.remove();
@@ -581,6 +592,7 @@ function moveBulletRight() {
             if (square.firstChild && square.firstChild !== bullet) {
                if(square.firstChild.getAttribute("char") == "titan"){
                 let color=square.firstChild.getAttribute("group");
+                square.appendChild(bullet);
                         alert(`${color} lost the game`);
                         location.reload();
                   }
@@ -589,12 +601,14 @@ function moveBulletRight() {
                         if(square.firstChild.getAttribute("group") == "blue"){
                             //checking orientation of triangle and send accordingly
                             if(square.firstChild.getAttribute("direction") == "right"){
+                              square.appendChild(bullet);
                                  updateTurn(turn);
                                  moveBulletRightCalled = false;
                                  bullet.remove();
                                 enableDrag()
                                  return;
                             }else{
+                              square.appendChild(bullet);
                               goDownCalled=true;
                               moveBulletRightCalled=false;
                               goDown();
@@ -606,12 +620,14 @@ function moveBulletRight() {
                         else if(square.firstChild.getAttribute("group") == "red"){
                            //checking orientation of triangle and send accordingly
                            if(square.firstChild.getAttribute("direction") == "right"){
+                            square.appendChild(bullet);
                             updateTurn(turn);
                             moveBulletRightCalled = false;
                             bullet.remove();
                            enableDrag()
                             return;
                        }else{
+                        square.appendChild(bullet);
                          goUpCalled=true;
                          moveBulletRightCalled=false;
                          goUp();
@@ -625,11 +641,13 @@ function moveBulletRight() {
                         if(square.firstChild.getAttribute("group") == "blue"){
                             //checking orientation of line and send accordingly
                             if(square.firstChild.getAttribute("direction") == "right"){
+                              square.appendChild(bullet);
                                  goUpCalled=true;
                                  moveBulletRightCalled=false;
                                  goUp();
                                  return;
                             }else{
+                              square.appendChild(bullet);
                               goDownCalled=true;
                               moveBulletRightCalled=false;
                               goDown();
@@ -641,11 +659,13 @@ function moveBulletRight() {
                         else if(square.firstChild.getAttribute("group") == "red"){
                            //checking orientation of line and send accordingly
                            if(square.firstChild.getAttribute("direction") == "right"){
+                            square.appendChild(bullet);
                             goDownCalled=true;
                             moveBulletRightCalled=false;
                             goDown();
                             return;
                        }else{
+                        square.appendChild(bullet);
                          goUpCalled=true;
                          moveBulletRightCalled=false;
                          goUp();
@@ -655,6 +675,7 @@ function moveBulletRight() {
                         }
                      }
               else{
+                square.appendChild(bullet);
                  updateTurn(turn);
                   moveBulletRightCalled = false;
                  bullet.remove();
@@ -698,6 +719,7 @@ function moveBulletRight() {
         if (square.firstChild && square.firstChild !== bullet) {
           if(square.firstChild.getAttribute("char") == "titan"){
             let color=square.firstChild.getAttribute("group");
+            square.appendChild(bullet);
                         alert(`${color} lost the game`);
                         location.reload();
              }
@@ -706,12 +728,14 @@ function moveBulletRight() {
              if(square.firstChild.getAttribute("group") == "blue"){
                  //checking orientation of triangle and send accordingly
                  if(square.firstChild.getAttribute("direction") == "right"){
+                  square.appendChild(bullet);
                   goDownCalled=true;
                    moveBulletLeftCalled=false;
                    goDown();
                    return;
                      
                  }else{
+                  square.appendChild(bullet);
                   updateTurn(turn);
                   moveBulletLeftCalled = false;
                   bullet.remove();
@@ -724,12 +748,13 @@ function moveBulletRight() {
              else if(square.firstChild.getAttribute("group") == "red"){
                 //checking orientation of triangle and send accordingly
                 if(square.firstChild.getAttribute("direction") == "right"){
-                 
+                  square.appendChild(bullet);
                     goUpCalled=true;
                     moveBulletLeftCalled=false;
                     goUp();
                     return
                 }else{
+                  square.appendChild(bullet);
                    updateTurn(turn);
                    moveBulletLeftCalled = false;
                    bullet.remove();
@@ -744,11 +769,13 @@ function moveBulletRight() {
              if(square.firstChild.getAttribute("group") == "blue"){
                  //checking orientation of line and send accordingly
                  if(square.firstChild.getAttribute("direction") == "right"){
+                  square.appendChild(bullet);
                   goDownCalled=true;
                   moveBulletLeftCalled=false;
                   goDown();
                   return;
-                 }else{                   
+                 }else{  
+                  square.appendChild(bullet);                 
                    goUpCalled=true;
                    moveBulletLeftCalled=false;
                      goUp();
@@ -760,11 +787,13 @@ function moveBulletRight() {
              else if(square.firstChild.getAttribute("group") == "red"){
                 //checking orientation of line and send accordingly
                 if(square.firstChild.getAttribute("direction") == "right"){
+                  square.appendChild(bullet);
                   goUpCalled=true;
                   moveBulletLeftCalled=false;
                   goUp();
                   return;
             }else{
+              square.appendChild(bullet);
                 goDownCalled=true;
                 moveBulletLeftCalled=false;
                  goDown();
@@ -774,6 +803,7 @@ function moveBulletRight() {
              }
                    }             
           else{
+            square.appendChild(bullet);
               updateTurn(turn);
               moveBulletLeftCalled = false;
               bullet.remove();
@@ -927,10 +957,12 @@ function goDown() {
         if (square.firstChild) {
           if ((square.firstChild.getAttribute("char") == "triangle" && square.firstChild.getAttribute("group") != "blue") || (square.firstChild.getAttribute("char") == "line" && square.firstChild.getAttribute("group") != "blue")) {
             if (square.firstChild.getAttribute("direction") == "right") {
+              square.appendChild(bullet);
               moveBulletRightCalled = true;
               goDownCalled=false;
               moveBulletRight();
             } else {
+              square.appendChild(bullet);
               goDownCalled=false;
               moveBulletLeftCalled = true;
               moveBulletLeft();
@@ -938,20 +970,24 @@ function goDown() {
           } 
           else if((square.firstChild.getAttribute("char") == "line" && square.firstChild.getAttribute("group") == "blue")){
             if(square.firstChild.getAttribute("direction") == "right"){
+              square.appendChild(bullet);
               moveBulletLeftCalled=true;
               moveBulletLeft();
 
             }else{
+              square.appendChild(bullet);
               moveBulletRightCalled=true;
               moveBulletRight();
             }
 
           }
            else if (square.firstChild.getAttribute("char") == "titan") {
+            square.appendChild(bullet);
             let color = square.firstChild.getAttribute("group");
             alert(`${color} lost the game`);
             location.reload();
           } else {
+            square.appendChild(bullet);
             goDownCalled=false;
             updateTurn(turn);
             enableDrag()
@@ -995,10 +1031,12 @@ function goUp() {
         if (square.firstChild) {
           if ((square.firstChild.getAttribute("char") == "triangle" && square.firstChild.getAttribute("group") != "red") || (square.firstChild.getAttribute("char") == "line" && square.firstChild.getAttribute("group") != "red")) {
             if (square.firstChild.getAttribute("direction") == "right") {
+              square.appendChild(bullet);
               moveBulletRightCalled = true;
               goUpCalled=false;
               moveBulletRight();
             } else {
+              square.appendChild(bullet);
               moveBulletLeftCalled = true;
               goUpCalled=false;
               moveBulletLeft();
@@ -1006,10 +1044,12 @@ function goUp() {
           } 
           else if((square.firstChild.getAttribute("char") == "line" && square.firstChild.getAttribute("group") == "red")){
             if(square.firstChild.getAttribute("direction") == "right"){
+              square.appendChild(bullet);
               moveBulletLeftCalled=true;
               moveBulletLeft();
 
             }else{
+              square.appendChild(bullet);
               moveBulletRightCalled=true;
               moveBulletRight();
             }
@@ -1017,9 +1057,11 @@ function goUp() {
           }
            else if (square.firstChild.getAttribute("char") == "titan") {
             let color = square.firstChild.getAttribute("group");
+            square.appendChild(bullet);
             alert(`${color} lost the game`);
             location.reload();
           } else {
+            square.appendChild(bullet);
             goUpCalled=false;
             updateTurn(turn);
             enableDrag()
