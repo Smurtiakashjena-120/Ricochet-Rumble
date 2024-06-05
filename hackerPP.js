@@ -157,8 +157,13 @@ else if(pauseBtn.innerText == "Play")
      startTimer(newTime, display);
      allSquares.forEach(square=>{
       if(square.firstChild && square.firstChild.getAttribute("class") != "bullet"){
+        if(square.firstChild.getAttribute("group") != turn){
+          square.classList.add("disabled")
+          square.firstChild.classList.add("disabled")
+        }else{
           square.classList.remove("disabled")
           square.firstChild.classList.remove("disabled")
+        }
       }  
     })
     }
@@ -190,6 +195,17 @@ window.onload=()=>{
   let display=document.querySelector("#timer");
   let totalTime=60;
   startTimer(totalTime, display);
+  allSquares.forEach(square=>{
+    if(square.firstChild && square.firstChild.getAttribute("class") != "bullet"){
+      if(square.firstChild.getAttribute("group") != turn){
+        square.classList.add("disabled")
+        square.firstChild.classList.add("disabled")
+      }else{
+        square.classList.remove("disabled")
+        square.firstChild.classList.remove("disabled")
+      }
+    }  
+  })
 
 }
 
@@ -213,6 +229,18 @@ display.innerText = `Time Left: ${totalTime}s`;
 // Start a new timer
 startTimer(totalTime, display);
 
+allSquares.forEach(square=>{
+  if(square.firstChild && square.firstChild.getAttribute("class") != "bullet"){
+    if(square.firstChild.getAttribute("group") != turn){
+      square.classList.add("disabled")
+      square.firstChild.classList.add("disabled")
+    }else{
+      square.classList.remove("disabled")
+      square.firstChild.classList.remove("disabled")
+    }
+  }  
+})
+
 
 
 }
@@ -224,13 +252,16 @@ let highLightFlag=false;
 
 function highLight(square){
 
-let hRow=parseInt(square.dataset.row);
-let hCol=parseInt(square.dataset.col);
-
 //ensures that every box become neutral before new highlight start
 allSquares.forEach(div =>{
   div.style.backgroundColor="grey";
 })
+  if(square.classList.contains("disabled")) return;
+
+
+let hRow=parseInt(square.dataset.row);
+let hCol=parseInt(square.dataset.col);
+
 
   if(highLightFlag){
      if(square.firstChild.getAttribute("char") != "canon"){
@@ -1078,7 +1109,7 @@ allSquares.forEach(square=>{
 
 function startRotate(square){
   if(square.firstChild){
-    if(square.firstChild.getAttribute("char") == "triangle" || square.firstChild.getAttribute("char") == "line" ){
+    if((square.firstChild.getAttribute("char") == "triangle" || square.firstChild.getAttribute("char") == "line") && (!square.classList.contains("disabled")) ){
       
       disableClickTriangle();
       disableClickLine();
@@ -1446,6 +1477,8 @@ allSquares.forEach(square => {
 function startSwap(square){
   clearSwapBtns();
   if(!(square.firstChild.getAttribute("char")=="line")) return;
+  if(square.classList.contains("disabled")) return;
+
   const swapBtn = document.createElement("button");
   swapBtn.innerText = "Swap";
   container.appendChild(swapBtn);
