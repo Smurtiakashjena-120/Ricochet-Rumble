@@ -1804,3 +1804,31 @@ function startReplay() {
 
   
 
+//to check if bullet present the divs should be unclickable
+setInterval(()=>{
+  let item = document.querySelector(".bullet");
+  if(item){
+    // console.log(item);
+    allSquares.forEach(square=>{
+      if(square.firstChild && square.firstChild.getAttribute("class") != "bullet"){
+          square.classList.add("disabled")
+          square.firstChild.classList.add("disabled")
+      }  
+    })
+  }else{
+    // console.log("no item")
+    //disable logic
+    allSquares.forEach(square=>{
+      if(square.firstChild && square.firstChild.getAttribute("class") != "bullet"){
+        if(square.firstChild.getAttribute("group") != turn){
+          square.classList.add("disabled")
+          square.firstChild.classList.add("disabled")
+        }else{
+          square.classList.remove("disabled")
+          square.firstChild.classList.remove("disabled")
+        }
+      }  
+    })
+  }
+  },2)
+  
